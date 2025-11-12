@@ -22,7 +22,7 @@ namespace TaskApi.Services
 
         public Task<TaskItem> CreateTaskAsync(TaskItem taskItem) => _taskRepository.AddAsync(taskItem);
 
-        public async Task UpdateTaskAsync(int id, TaskItem taskItem)
+        public async Task<TaskItem> UpdateTaskAsync(int id, TaskItem taskItem)
         {
             var existing = await _taskRepository.GetByIdAsync(id);
             if (existing == null) throw new KeyNotFoundException("Task not found");
@@ -30,24 +30,17 @@ namespace TaskApi.Services
             existing.Title = taskItem.Title;
             existing.Description = taskItem.Description;
             existing.Completed = taskItem.Completed;
-            await _taskRepository.UpdateAsync(existing);
+            var updated = await _taskRepository.UpdateAsync(existing);
+            return updated;
         }
 
-        public Task DeleteTaskAsync(int id) => _taskRepository.DeleteAsync(id);
-
-        public Task<TaskItem> UpdateTaskAsync(TaskItem taskItem)
+        public async Task<bool> DeleteTaskAsync(int id)
         {
-            throw new NotImplementedException();
+            var existing = await _taskRepository.GetByIdAsync(id);
+            if (existing == null) return false;
+            await _taskRepository.DeleteAsync(id);
+            return true;
         }
 
-        Task<bool> ITaskService.DeleteTaskAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<TaskItem> ITaskService.UpdateTaskAsync(int id, TaskItem taskItem)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
