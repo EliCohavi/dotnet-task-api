@@ -41,7 +41,7 @@ namespace TaskApi.Controllers
             return CreatedAtAction(nameof(GetTaskById), new { id = createdTask.Id }, createdTask);
         }
 
-        [HttpPut("{id:int}")]
+        [HttpPatch("{id:int}")]
         public async Task<IActionResult> UpdateTask(int id, TaskItem taskItem)
         {
             try
