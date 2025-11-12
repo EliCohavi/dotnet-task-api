@@ -37,3 +37,43 @@
 /Users/elicohavi/Documents/GitHub/dotnet-task-api/dotnet-task-api/TaskApi/obj/Debug/net9.0/TaskApi.pdb
 /Users/elicohavi/Documents/GitHub/dotnet-task-api/dotnet-task-api/TaskApi/obj/Debug/net9.0/TaskApi.genruntimeconfig.cache
 /Users/elicohavi/Documents/GitHub/dotnet-task-api/dotnet-task-api/TaskApi/obj/Debug/net9.0/ref/TaskApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\appsettings.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.staticwebassets.endpoints.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.exe
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.deps.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.runtimeconfig.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.pdb
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.csproj.AssemblyReference.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.AssemblyInfoInputs.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.AssemblyInfo.cs
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.csproj.CoreCompileInputs.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.sourcelink.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\scopedcss\bundle\TaskApi.styles.css
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.csproj.Up2Date
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\refint\TaskApi.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.pdb
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.genruntimeconfig.cache
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\ref\TaskApi.dll
