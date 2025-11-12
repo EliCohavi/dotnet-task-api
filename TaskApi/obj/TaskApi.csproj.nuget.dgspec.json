@@ -1,31 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi\\TaskApi.csproj": {}
+    "/Users/elicohavi/Documents/GitHub/dotnet-task-api/TaskApi/TaskApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi\\TaskApi.csproj": {
+    "/Users/elicohavi/Documents/GitHub/dotnet-task-api/TaskApi/TaskApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi\\TaskApi.csproj",
+        "projectUniqueName": "/Users/elicohavi/Documents/GitHub/dotnet-task-api/TaskApi/TaskApi.csproj",
         "projectName": "TaskApi",
-        "projectPath": "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi\\TaskApi.csproj",
-        "packagesPath": "C:\\Users\\Eli Cohavi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi\\obj\\",
+        "projectPath": "/Users/elicohavi/Documents/GitHub/dotnet-task-api/TaskApi/TaskApi.csproj",
+        "packagesPath": "/Users/elicohavi/.nuget/packages/",
+        "outputPath": "/Users/elicohavi/Documents/GitHub/dotnet-task-api/TaskApi/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Eli Cohavi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/elicohavi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -86,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
