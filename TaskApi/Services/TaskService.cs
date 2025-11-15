@@ -34,6 +34,20 @@ namespace TaskApi.Services
             return updated;
         }
 
+        public async Task<TaskItem> PartialUpdateTaskAsync(int id, TaskItem taskItem)
+        {
+            var existing = await _taskRepository.GetByIdAsync(id);
+            if (existing == null) throw new KeyNotFoundException("Task not found");
+            // Partial field updates
+                //if (taskItem.Title != null)
+            existing.Title = taskItem.Title;
+                //if (taskItem.Description != null)
+            existing.Description = taskItem.Description;
+            existing.Completed = taskItem.Completed;
+            var updated = await _taskRepository.PartialUpdateAsync(existing);
+            return updated;
+        }
+
         public async Task<bool> DeleteTaskAsync(int id)
         {
             var existing = await _taskRepository.GetByIdAsync(id);
@@ -41,6 +55,7 @@ namespace TaskApi.Services
             await _taskRepository.DeleteAsync(id);
             return true;
         }
+
 
     }
 }

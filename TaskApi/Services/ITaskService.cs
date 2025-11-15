@@ -10,6 +10,7 @@ namespace TaskApi.Services
         Task<TaskItem> GetTaskByIdAsync(int id);
         Task<TaskItem> CreateTaskAsync(TaskItem taskItem);
         Task<TaskItem> UpdateTaskAsync(int id, TaskItem taskItem);
+        Task<TaskItem> PartialUpdateTaskAsync(int id, TaskItem taskItem);
         Task<bool> DeleteTaskAsync(int id);
     }
 }

@@ -2,12 +2,13 @@ using TaskApi.Repositories;
 using TaskApi.Services;
 using TaskApi.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add DbContext using InMemory database
 builder.Services.AddDbContext<TaskApi.Data.AppDbContext>(options =>
-    options.UseInMemoryDatabase("TaskDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TasksDb")));
 
 // Register repository and service with DI container
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();

@@ -35,18 +35,40 @@ namespace TaskApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTask(TaskItem taskItem)
+        public async Task<IActionResult> CreateTask(CreateTaskDto dto)
         {
+            var taskItem = new TaskItem
+            {
+                Title = dto.Title,
+                Description = dto.Description,
+                Completed = dto.Completed
+            };
+
             var createdTask = await _taskService.CreateTaskAsync(taskItem);
+
             return CreatedAtAction(nameof(GetTaskById), new { id = createdTask.Id }, createdTask);
         }
 
-        [HttpPatch("{id:int}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateTask(int id, TaskItem taskItem)
         {
             try
             {
                 await _taskService.UpdateTaskAsync(id, taskItem);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        [HttpPatch("{id:int}")]
+        public async Task<IActionResult> PartialUpdateTask(int id, TaskItem taskItem)
+        {
+            try
+            {
+                await _taskService.PartialUpdateTaskAsync(id, taskItem);
                 return NoContent();
             }
             catch (KeyNotFoundException)
@@ -61,5 +83,6 @@ namespace TaskApi.Controllers
             await _taskService.DeleteTaskAsync(id);
             return NoContent();
         }
+
     }
 }
