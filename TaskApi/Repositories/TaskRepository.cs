@@ -39,6 +39,13 @@ namespace TaskApi.Repositories
             return taskItem;
         }
 
+        public async Task<TaskItem> PartialUpdateAsync(TaskItem taskItem)
+        {
+            _db.TaskItems.Update(taskItem);
+            await _db.SaveChangesAsync();
+            return taskItem;
+        }
+
         public async Task<bool> DeleteAsync(int id)
         {
             var taskItem = await _db.TaskItems.FindAsync(id);
