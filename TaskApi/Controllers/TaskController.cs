@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using TaskApi.Models;
 using TaskApi.Services;
 using System.Threading.Tasks;
+using TaskApi.Dtos;
+using System.Linq;
 
 namespace TaskApi.Controllers
 {
@@ -20,41 +22,59 @@ namespace TaskApi.Controllers
         public async Task<IActionResult> GetAllTasks()
         {
             var tasks = await _taskService.GetAllTasksAsync();
-            return Ok(tasks);
+
+            var dtoList = tasks.Select(t => new TaskItemDto
+            {
+                Id = t.Id,
+                Title = t.Title,
+                Description = t.Description,
+                Completed = t.Completed
+            });
+
+            return Ok(dtoList);
         }
 
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetTaskById(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
-            if (task == null)
+            if (task == null) return NotFound();
+            
+            var dto = new TaskItemDto
             {
-                return NotFound();
-            }
-            return Ok(task);
+                Id = task.Id,
+                Title = task.Title,
+                Description = task.Description,
+                Completed = task.Completed
+            };
+            return Ok(dto);
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTask(CreateTaskDto dto)
-        {
-            var taskItem = new TaskItem
+        public async Task<IActionResult> CreateTask(CreateTaskDto dto) // Takes Dto, Maps to Model
+        { 
+
+            var createdTaskDto = await _taskService.CreateTaskAsync(dto); // Create task by calling service. Returns created TaskItem model.
+
+            var responseDto = new TaskItemDto // Maps dto to response dto with id.
             {
-                Title = dto.Title,
-                Description = dto.Description,
-                Completed = dto.Completed
+                Id = createdTaskDto.Id,
+                Title = createdTaskDto.Title,
+                Description = createdTaskDto.Description,
+                Completed = createdTaskDto.Completed
             };
 
-            var createdTask = await _taskService.CreateTaskAsync(taskItem);
+            return CreatedAtAction(nameof(GetTaskById), new { id = createdTaskDto.Id }, responseDto);
 
-            return CreatedAtAction(nameof(GetTaskById), new { id = createdTask.Id }, createdTask);
+
         }
 
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateTask(int id, TaskItem taskItem)
+        public async Task<IActionResult> UpdateTask(int id, UpdateTaskDto dto)
         {
             try
             {
-                await _taskService.UpdateTaskAsync(id, taskItem);
+                await _taskService.UpdateTaskAsync(id, dto);
                 return NoContent();
             }
             catch (KeyNotFoundException)
@@ -64,11 +84,11 @@ namespace TaskApi.Controllers
         }
 
         [HttpPatch("{id:int}")]
-        public async Task<IActionResult> PartialUpdateTask(int id, TaskItem taskItem)
+        public async Task<IActionResult> PartialUpdateTask(int id, PatchTaskDto dto)
         {
             try
             {
-                await _taskService.PartialUpdateTaskAsync(id, taskItem);
+                await _taskService.PartialUpdateTaskAsync(id, dto);
                 return NoContent();
             }
             catch (KeyNotFoundException)
