@@ -1,8 +1,9 @@
-using TaskApi.Repositories;
-using TaskApi.Services;
-using TaskApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using TaskApi.Data;
+using TaskApi.Repositories;
+using TaskApi.Repositories.Employee_Repositories;
+using TaskApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,9 @@ builder.Services.AddDbContext<TaskApi.Data.AppDbContext>(options =>
 // Register repository and service with DI container
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

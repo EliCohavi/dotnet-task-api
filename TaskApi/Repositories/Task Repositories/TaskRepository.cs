@@ -49,10 +49,7 @@ namespace TaskApi.Repositories
         public async Task<bool> DeleteAsync(int id)
         {
             var taskItem = await _db.TaskItems.FindAsync(id);
-            if (taskItem == null)
-            {
-                return false;
-            }
+            if (taskItem == null) return false;
 
             _db.TaskItems.Remove(taskItem);
             await _db.SaveChangesAsync();
