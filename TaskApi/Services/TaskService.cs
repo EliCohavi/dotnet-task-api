@@ -24,7 +24,8 @@ namespace TaskApi.Services
                 Id = e.Id,
                 Title = e.Title,
                 Description = e.Description,
-                Completed = e.Completed
+                Completed = e.Completed,
+                DueDate = e.DueDate
             });
 
         }
@@ -41,7 +42,8 @@ namespace TaskApi.Services
                 Id = entity.Id,
                 Title = entity.Title,
                 Description = entity.Description,
-                Completed = entity.Completed
+                Completed = entity.Completed,
+                DueDate = entity.DueDate
             };
         }
 
@@ -52,7 +54,8 @@ namespace TaskApi.Services
             {
                 Title = dto.Title,
                 Description = dto.Description,
-                Completed = dto.Completed
+                Completed = dto.Completed,
+                DueDate = dto.DueDate
             };
 
             var created = await _taskRepository.AddAsync(entity); // Save to repository
@@ -62,7 +65,8 @@ namespace TaskApi.Services
                 Id = created.Id,
                 Title = created.Title,
                 Description = created.Description,
-                Completed = created.Completed
+                Completed = created.Completed,
+                DueDate = created.DueDate
             };
         }
 
@@ -76,6 +80,7 @@ namespace TaskApi.Services
             existing.Title = dto.Title;
             existing.Description = dto.Description;
             existing.Completed = dto.Completed;
+            existing.DueDate = dto.DueDate;
 
             var updated = await _taskRepository.UpdateAsync(existing); // Save changes to repository
 
@@ -84,7 +89,8 @@ namespace TaskApi.Services
                 Id = updated.Id,
                 Title = updated.Title,
                 Description = updated.Description,
-                Completed = updated.Completed
+                Completed = updated.Completed,
+                DueDate = updated.DueDate
             };
 
             return updatedDto;
@@ -99,6 +105,7 @@ namespace TaskApi.Services
             if (dto.Title != null) existing.Title = dto.Title;
             if (dto.Description != null) existing.Description = dto.Description;
             if (dto.Completed != null) existing.Completed = dto.Completed.Value;
+            if (dto.DueDate != null) existing.DueDate = dto.DueDate;
 
             var updated = await _taskRepository.PartialUpdateAsync(existing); // Save changes to repository
 
@@ -107,7 +114,8 @@ namespace TaskApi.Services
                 Id = updated.Id,
                 Title = updated.Title,
                 Description = updated.Description,
-                Completed = updated.Completed
+                Completed = updated.Completed,
+                DueDate = updated.DueDate
             };
 
             return updatedDto;

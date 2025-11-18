@@ -28,7 +28,8 @@ namespace TaskApi.Controllers
                 Id = t.Id,
                 Title = t.Title,
                 Description = t.Description,
-                Completed = t.Completed
+                Completed = t.Completed,
+                DueDate = t.DueDate
             });
 
             return Ok(dtoList);
@@ -45,7 +46,8 @@ namespace TaskApi.Controllers
                 Id = task.Id,
                 Title = task.Title,
                 Description = task.Description,
-                Completed = task.Completed
+                Completed = task.Completed,
+                DueDate = task.DueDate
             };
             return Ok(dto);
         }
@@ -61,7 +63,8 @@ namespace TaskApi.Controllers
                 Id = createdTaskDto.Id,
                 Title = createdTaskDto.Title,
                 Description = createdTaskDto.Description,
-                Completed = createdTaskDto.Completed
+                Completed = createdTaskDto.Completed,
+                DueDate = createdTaskDto.DueDate
             };
 
             return CreatedAtAction(nameof(GetTaskById), new { id = createdTaskDto.Id }, responseDto);
