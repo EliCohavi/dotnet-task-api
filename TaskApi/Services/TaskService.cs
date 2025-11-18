@@ -121,6 +121,24 @@ namespace TaskApi.Services
             return updatedDto;
         }
 
+        public async Task<IEnumerable<TaskItemDto>> GetUpcomingTasksAsync()
+        {
+            var allTasks = await _taskRepository.GetAllAsync();
+            var upcomingTasks = allTasks
+                .Where(t => t.DueDate != null)
+                .OrderBy(t => t.DueDate);
+
+
+            return upcomingTasks.Select(e => new TaskItemDto
+            {
+                Id = e.Id,
+                Title = e.Title,
+                Description = e.Description,
+                Completed = e.Completed,
+                DueDate = e.DueDate
+            });
+        }
+
         public async Task<bool> DeleteTaskAsync(int id)
         {
             var existing = await _taskRepository.GetByIdAsync(id);

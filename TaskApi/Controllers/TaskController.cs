@@ -52,6 +52,13 @@ namespace TaskApi.Controllers
             return Ok(dto);
         }
 
+        [HttpGet("upcoming")]
+        public async Task<IActionResult> GetUpcomingTasks()
+        {
+            var tasks = await _taskService.GetUpcomingTasksAsync();
+            return Ok(tasks);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateTask(CreateTaskDto dto) // Takes Dto, Maps to Model
         { 

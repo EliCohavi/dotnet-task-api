@@ -12,6 +12,7 @@ namespace TaskApi.Services
         Task<TaskItemDto> CreateTaskAsync(CreateTaskDto dto);
         Task<TaskItemDto> UpdateTaskAsync(int id, UpdateTaskDto dto);
         Task<TaskItemDto> PartialUpdateTaskAsync(int id, PatchTaskDto dto);
+        Task<IEnumerable<TaskItemDto>> GetUpcomingTasksAsync();
         Task<bool> DeleteTaskAsync(int id);
     }
 }
