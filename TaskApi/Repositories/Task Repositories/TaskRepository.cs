@@ -22,7 +22,9 @@ namespace TaskApi.Repositories
 
         public async Task<TaskItem> GetByIdAsync(int id)
         {
-            return await _db.TaskItems.FindAsync(id);
+            return await _db.TaskItems
+                .Include(t => t.Employees) // Include employees when retrieving a task
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<TaskItem> AddAsync(TaskItem taskItem)
@@ -54,6 +56,47 @@ namespace TaskApi.Repositories
             _db.TaskItems.Remove(taskItem);
             await _db.SaveChangesAsync();
             return true;
+        }
+
+        public async Task AssignEmployeeAsync(int taskId, int employeeId)
+        {
+            var taskItem = await _db.TaskItems
+                .Include(t => t.Employees)
+                .FirstOrDefaultAsync(t => t.Id == taskId);
+
+            if (taskItem == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            var employee = await _db.Employees.FindAsync(employeeId);
+
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            // Only add if not already assigned
+            if (!taskItem.Employees.Any(e => e.Id == employeeId))
+                taskItem.Employees.Add(employee);
+
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task RemoveEmployeeAssignmentAsync(int taskId, int employeeId)
+        {
+            var taskItem = await _db.TaskItems
+                .Include(t => t.Employees)
+                .FirstOrDefaultAsync(t => t.Id == taskId);
+
+            if (taskItem == null)
+                throw new KeyNotFoundException("Task not found");
+
+            var employee = await _db.Employees.FindAsync(employeeId);
+
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found");
+
+            if (employee.Tasks.Any(t => t.Id == taskId))
+                employee.Tasks.Remove(taskItem);
+
+            await _db.SaveChangesAsync();
         }
     }
 }

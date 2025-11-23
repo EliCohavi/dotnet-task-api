@@ -9,7 +9,7 @@ using TaskApi.Services;
 namespace TaskApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/employees")]
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
@@ -55,6 +55,36 @@ namespace TaskApi.Controllers
             };
 
             return CreatedAtAction(nameof(GetEmployeeById), new { id = createdEmployeeDto.Id }, responseDto);
+        }
+
+        //POST /employees/{employeeId}/tasks/{taskId}
+        [HttpPost("{employeeId:int}/tasks/{taskId:int}")]
+        public async Task<IActionResult> AssignTaskToEmployee(int employeeId, int taskId)
+        {
+            try
+            {
+                await _employeeService.AssignAsync(employeeId, taskId);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        // DELETE /employees/{employeeId}/tasks/{taskId}
+        [HttpDelete("{employeeId:int}/tasks/{taskId:int}")]
+        public async Task<IActionResult> RemoveTaskFromEmployee(int employeeId, int taskId)
+        {
+            try
+            {
+                await _employeeService.RemoveAssignmentAsync(employeeId, taskId);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
         }
 
         [HttpPut("{id:int}")]

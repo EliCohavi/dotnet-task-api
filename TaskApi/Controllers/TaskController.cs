@@ -8,7 +8,7 @@ using System.Linq;
 namespace TaskApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/tasks")]
     public class TaskController : ControllerBase
     {
         private readonly ITaskService _taskService;
@@ -59,6 +59,7 @@ namespace TaskApi.Controllers
             return Ok(tasks);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CreateTask(CreateTaskDto dto) // Takes Dto, Maps to Model
         { 
@@ -78,6 +79,7 @@ namespace TaskApi.Controllers
 
 
         }
+
 
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateTask(int id, UpdateTaskDto dto)
@@ -99,6 +101,36 @@ namespace TaskApi.Controllers
             try
             {
                 await _taskService.PartialUpdateTaskAsync(id, dto);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        // POST /tasks/{taskId}/employees/{employeeId}
+        [HttpPost("{taskId:int}/employees/{employeeId:int}")]
+        public async Task<IActionResult> AssignTaskToEmployee(int taskId, int employeeId)
+        {
+            try
+            {
+                await _taskService.AssignAsync(taskId, employeeId);
+                return NoContent();
+            }
+            catch (KeyNotFoundException)
+            {
+                return NotFound();
+            }
+        }
+
+        // DELETE /tasks/{taskId}/employees/{employeeId}
+        [HttpDelete("{taskId:int}/employees/{employeeId:int}")]
+        public async Task<IActionResult> RemoveTaskFromEmployee(int taskId, int employeeId)
+        {
+            try
+            {
+                await _taskService.RemoveAssignmentAsync(taskId, employeeId);
                 return NoContent();
             }
             catch (KeyNotFoundException)

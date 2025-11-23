@@ -14,5 +14,7 @@ namespace TaskApi.Services
         Task<EmployeeDto> UpdateEmployeeAsync(int id, EmployeeUpdateDto dto);
         Task<EmployeeDto> PartialUpdateEmployeeAsync(int id, EmployeePatchDto dto);
         Task<bool> DeleteEmployeeAsync(int id);
+        Task AssignAsync(int employeeId, int taskId);
+        Task RemoveAssignmentAsync(int employeeId, int taskId);
     }
 }

@@ -12,5 +12,7 @@ namespace TaskApi.Repositories
         Task<TaskItem> UpdateAsync(TaskItem taskItem);
         Task<TaskItem> PartialUpdateAsync(TaskItem taskItem);
         Task<bool> DeleteAsync(int id);
+        Task AssignEmployeeAsync(int taskId, int employeeId);
+        Task RemoveEmployeeAssignmentAsync(int taskId, int employeeId);
     }
 }

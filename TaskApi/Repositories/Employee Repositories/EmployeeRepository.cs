@@ -22,7 +22,9 @@ namespace TaskApi.Repositories.Employee_Repositories
 
         public async Task<Employee> GetByIdAsync(int id)
         {
-            return await _db.Employees.FindAsync(id);
+            return await _db.Employees
+                .Include(e => e.Tasks) // Include tasks when retrieving an employee
+                .FirstOrDefaultAsync(e => e.Id == id);
         }
 
         public async Task<Employee> AddAsync(Employee employee)
@@ -51,19 +53,53 @@ namespace TaskApi.Repositories.Employee_Repositories
             var employee = await _db.Employees.FindAsync(id);
             if (employee == null) return false;
 
-            _db.Employees.Remove(employee);
-            await _db.SaveChangesAsync();
+            _db.Entry(employee).Collection(e => e.Tasks).Load(); // Load related tasks
+            employee.Tasks?.Clear(); // Clear task assignments
             return true;
         }
 
         public async Task AssignTaskAsync(int employeeId, int taskId)
         {
-            throw new NotImplementedException();
+            // Retrieve the employee and task from the database including their navigation collections
+            var employee = await _db.Employees
+                .Include(e => e.Tasks)
+                .FirstOrDefaultAsync(e => e.Id == employeeId);
+
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            var task = await _db.TaskItems.FindAsync(taskId);
+
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            // Prevents duplicate assignments
+            if (!employee.Tasks.Any(t => t.Id == taskId))
+                employee.Tasks.Add(task);
+
+            await _db.SaveChangesAsync();
         }
 
         public async Task RemoveTaskAssignmentAsync(int employeeId, int taskId)
         {
-            throw new NotImplementedException();
+            var employee = await _db.Employees
+                .Include(e => e.Tasks)
+                .FirstOrDefaultAsync(e => e.Id == employeeId);
+
+            _db.Employees.Any(e => e.Name!.Contains("Mike"));
+
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            var taskItem = await _db.TaskItems.FindAsync(taskId);
+
+            if (taskItem == null)
+                throw new KeyNotFoundException("Task not assigned to this employee.");
+
+            if (taskItem.Employees.Any(e => e.Id == employeeId))
+                taskItem.Employees.Remove(employee);
+
+            await _db.SaveChangesAsync();
         }
     }
 }

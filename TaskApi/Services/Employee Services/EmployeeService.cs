@@ -12,10 +12,13 @@ namespace TaskApi.Services
     {
 
         private readonly IEmployeeRepository _employeeRepository;
+        private readonly ITaskRepository _taskRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository)
+
+        public EmployeeService(IEmployeeRepository employeeRepository, ITaskRepository taskRepository)
         {
             _employeeRepository = employeeRepository;
+            _taskRepository = taskRepository;
         }
 
         public async Task<IEnumerable<EmployeeDto>> GetAllEmployeesAsync()
@@ -103,6 +106,33 @@ namespace TaskApi.Services
             await _employeeRepository.DeleteAsync(id); // Delete entity from repository
             return true;
 
+        }
+
+        public async Task AssignAsync(int employeeId, int taskId)
+        {
+            // Optional: verify existence before calling repo
+            var employee = await _employeeRepository.GetByIdAsync(employeeId);
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            var task = await _taskRepository.GetByIdAsync(taskId);
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            await _employeeRepository.AssignTaskAsync(employeeId, taskId);
+        }
+
+        public async Task RemoveAssignmentAsync(int employeeId, int taskId)
+        {
+            var employee = await _employeeRepository.GetByIdAsync(employeeId);
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            var task = await _taskRepository.GetByIdAsync(taskId);
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            await _employeeRepository.RemoveTaskAssignmentAsync(employeeId, taskId);
         }
 
     }

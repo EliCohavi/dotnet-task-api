@@ -1,19 +1,22 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskApi.Dtos;
 using TaskApi.Models;
 using TaskApi.Repositories;
-using System.Linq;
+using TaskApi.Repositories.Employee_Repositories;
 
 namespace TaskApi.Services
 {
     public class TaskService : ITaskService
     {
         private readonly ITaskRepository _taskRepository;
+        private readonly IEmployeeRepository _employeeRepository;
 
-        public TaskService(ITaskRepository taskRepository)
+        public TaskService(ITaskRepository taskRepository, IEmployeeRepository employeeRepository)
         {
             _taskRepository = taskRepository;
+            _employeeRepository = employeeRepository;
         }
 
         public async Task<IEnumerable<TaskItemDto>> GetAllTasksAsync() {
@@ -145,6 +148,35 @@ namespace TaskApi.Services
             if (existing == null) return false;
             await _taskRepository.DeleteAsync(id);
             return true;
+        }
+
+        public async Task AssignAsync(int taskId, int employeeId)
+        {
+            // Optional: verify existence before calling repo
+            var task = await _taskRepository.GetByIdAsync(taskId);
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            var employee = await _employeeRepository.GetByIdAsync(employeeId);
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            // Perform assignment
+            await _taskRepository.AssignEmployeeAsync(taskId, employeeId);
+        }
+
+
+        public async Task RemoveAssignmentAsync(int taskId, int employeeId)
+        {
+            var task = await _taskRepository.GetByIdAsync(taskId);
+            if (task == null)
+                throw new KeyNotFoundException("Task not found.");
+
+            var employee = await _employeeRepository.GetByIdAsync(employeeId);
+            if (employee == null)
+                throw new KeyNotFoundException("Employee not found.");
+
+            await _taskRepository.RemoveEmployeeAssignmentAsync(taskId, employeeId);
         }
 
 
