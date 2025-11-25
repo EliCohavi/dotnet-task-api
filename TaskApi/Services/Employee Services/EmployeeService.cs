@@ -5,6 +5,7 @@ using TaskApi.Models;
 using TaskApi.Repositories;
 using System.Linq;
 using TaskApi.Dtos.Employee_Dtos;
+using TaskApi.Dtos.Task_Dtos;
 
 namespace TaskApi.Services
 {
@@ -29,6 +30,11 @@ namespace TaskApi.Services
             {
                 Id = e.Id,
                 Name = e.Name,
+                Tasks = e.Tasks?.Select(t => new TaskSummaryDto
+                {
+                    Id = t.Id,
+                    Title = t.Title
+                }).ToList()
             });
         }
 
@@ -41,7 +47,12 @@ namespace TaskApi.Services
             return new EmployeeDto
             {
                 Id = entity.Id,
-                Name = entity.Name
+                Name = entity.Name,
+                Tasks = entity.Tasks?.Select(t => new TaskSummaryDto
+                {
+                    Id = t.Id,
+                    Title = t.Title
+                }).ToList()
             };
         }
 

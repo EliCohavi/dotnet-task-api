@@ -17,14 +17,16 @@ namespace TaskApi.Repositories.Employee_Repositories
 
         public async Task<IEnumerable<Employee>> GetAllAsync()
         {
-            return await _db.Employees.ToListAsync();
+            return await _db.Employees
+                .Include(t => t.Tasks).ToListAsync(); // Include tasks when retrieving employees
+
         }
 
         public async Task<Employee> GetByIdAsync(int id)
         {
             return await _db.Employees
-                .Include(e => e.Tasks) // Include tasks when retrieving an employee
-                .FirstOrDefaultAsync(e => e.Id == id);
+                .Include(t => t.Tasks) // Include tasks when retrieving an employee
+                .FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<Employee> AddAsync(Employee employee)
@@ -62,8 +64,8 @@ namespace TaskApi.Repositories.Employee_Repositories
         {
             // Retrieve the employee and task from the database including their navigation collections
             var employee = await _db.Employees
-                .Include(e => e.Tasks)
-                .FirstOrDefaultAsync(e => e.Id == employeeId);
+                .Include(t => t.Tasks)
+                .FirstOrDefaultAsync(t => t.Id == employeeId);
 
             if (employee == null)
                 throw new KeyNotFoundException("Employee not found.");
@@ -83,8 +85,8 @@ namespace TaskApi.Repositories.Employee_Repositories
         public async Task RemoveTaskAssignmentAsync(int employeeId, int taskId)
         {
             var employee = await _db.Employees
-                .Include(e => e.Tasks)
-                .FirstOrDefaultAsync(e => e.Id == employeeId);
+                .Include(t => t.Tasks)
+                .FirstOrDefaultAsync(t => t.Id == employeeId);
 
             _db.Employees.Any(e => e.Name!.Contains("Mike"));
 
@@ -96,7 +98,7 @@ namespace TaskApi.Repositories.Employee_Repositories
             if (taskItem == null)
                 throw new KeyNotFoundException("Task not assigned to this employee.");
 
-            if (taskItem.Employees.Any(e => e.Id == employeeId))
+            if (taskItem.Employees.Any(t => t.Id == employeeId))
                 taskItem.Employees.Remove(employee);
 
             await _db.SaveChangesAsync();

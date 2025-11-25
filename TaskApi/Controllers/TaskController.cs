@@ -4,6 +4,7 @@ using TaskApi.Services;
 using System.Threading.Tasks;
 using TaskApi.Dtos;
 using System.Linq;
+using TaskApi.Dtos.Employee_Dtos;
 
 namespace TaskApi.Controllers
 {
@@ -29,7 +30,12 @@ namespace TaskApi.Controllers
                 Title = t.Title,
                 Description = t.Description,
                 Completed = t.Completed,
-                DueDate = t.DueDate
+                DueDate = t.DueDate,
+                Employees = t.Employees?.Select(e => new EmployeeSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                }).ToList()
             });
 
             return Ok(dtoList);
@@ -47,7 +53,12 @@ namespace TaskApi.Controllers
                 Title = task.Title,
                 Description = task.Description,
                 Completed = task.Completed,
-                DueDate = task.DueDate
+                DueDate = task.DueDate,
+                Employees = task.Employees?.Select(e => new EmployeeSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                }).ToList()
             };
             return Ok(dto);
         }

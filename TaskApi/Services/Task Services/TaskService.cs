@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskApi.Dtos;
+using TaskApi.Dtos.Employee_Dtos;
 using TaskApi.Models;
 using TaskApi.Repositories;
 using TaskApi.Repositories.Employee_Repositories;
@@ -28,7 +29,12 @@ namespace TaskApi.Services
                 Title = e.Title,
                 Description = e.Description,
                 Completed = e.Completed,
-                DueDate = e.DueDate
+                DueDate = e.DueDate,
+                Employees = e.Employees?.Select(emp => new EmployeeSummaryDto
+                {
+                    Id = emp.Id,
+                    Name = emp.Name
+                }).ToList()
             });
 
         }
@@ -46,7 +52,12 @@ namespace TaskApi.Services
                 Title = entity.Title,
                 Description = entity.Description,
                 Completed = entity.Completed,
-                DueDate = entity.DueDate
+                DueDate = entity.DueDate,
+                Employees = entity.Employees?.Select(emp => new EmployeeSummaryDto
+                {
+                    Id = emp.Id,
+                    Name = emp.Name
+                }).ToList()
             };
         }
 

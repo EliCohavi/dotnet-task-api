@@ -17,7 +17,9 @@ namespace TaskApi.Repositories
 
         public async Task<IEnumerable<TaskItem>> GetAllAsync()
         {
-            return await _db.TaskItems.ToListAsync();
+            return await _db.TaskItems
+                .Include(t => t.Employees)
+                .ToListAsync();
         }
 
         public async Task<TaskItem> GetByIdAsync(int id)

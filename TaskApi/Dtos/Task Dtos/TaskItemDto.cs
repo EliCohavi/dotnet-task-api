@@ -1,4 +1,6 @@
-﻿namespace TaskApi.Dtos
+﻿using TaskApi.Dtos.Employee_Dtos;
+
+namespace TaskApi.Dtos
 {
     public class TaskItemDto
     {
@@ -7,5 +9,6 @@
         public string? Description { get; set; }
         public bool Completed { get; set; }
         public int? DueDate { get; set; }
+        public List<EmployeeSummaryDto>? Employees { get; set; }
     }
 }

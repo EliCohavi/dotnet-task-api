@@ -8,6 +8,6 @@ namespace TaskApi.Models
         public string? Description { get; set; }
         public bool Completed { get; set; }
         public int? DueDate { get; set; }
-        public ICollection<Employee>? Employees { get; set; }
+        public ICollection<Employee>? Employees { get; set; } = new List<Employee>();
     }
 }
