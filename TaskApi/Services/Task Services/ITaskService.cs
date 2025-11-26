@@ -16,5 +16,6 @@ namespace TaskApi.Services
         Task<bool> DeleteTaskAsync(int id);
         Task AssignAsync(int taskId, int employeeId);
         Task RemoveAssignmentAsync(int taskId, int employeeId);
+        Task <List<TaskItemDto>> GetOverdueTasksAsync();
     }
 }

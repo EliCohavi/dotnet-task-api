@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaskApi.Dtos;
 using TaskApi.Dtos.Employee_Dtos;
+using TaskApi.Dtos.Task_Dtos;
 using TaskApi.Models;
 using TaskApi.Repositories;
 using TaskApi.Repositories.Employee_Repositories;
@@ -140,16 +141,22 @@ namespace TaskApi.Services
             var allTasks = await _taskRepository.GetAllAsync();
             var upcomingTasks = allTasks
                 .Where(t => t.DueDate != null)
+                
                 .OrderBy(t => t.DueDate);
 
 
-            return upcomingTasks.Select(e => new TaskItemDto
+            return upcomingTasks.Select(t => new TaskItemDto
             {
-                Id = e.Id,
-                Title = e.Title,
-                Description = e.Description,
-                Completed = e.Completed,
-                DueDate = e.DueDate
+                Id = t.Id,
+                Title = t.Title,
+                Description = t.Description,
+                Completed = t.Completed,
+                DueDate = t.DueDate,
+                Employees = t.Employees?.Select(e => new EmployeeSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                }).ToList()
             });
         }
 
@@ -190,6 +197,24 @@ namespace TaskApi.Services
             await _taskRepository.RemoveEmployeeAssignmentAsync(taskId, employeeId);
         }
 
+        public async Task<List<TaskItemDto>> GetOverdueTasksAsync()
+        {
+            List<TaskItem> entities = await _taskRepository.GetOverdueTasksAsync();
+
+            return entities.Select(t => new TaskItemDto
+            {
+                Id = t.Id,
+                Title = t.Title,
+                Description = t.Description,
+                Completed = t.Completed,
+                DueDate = t.DueDate,
+                Employees = t.Employees?.Select(e => new EmployeeSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name
+                }).ToList()
+            }).ToList();
+        }
 
     }
 }

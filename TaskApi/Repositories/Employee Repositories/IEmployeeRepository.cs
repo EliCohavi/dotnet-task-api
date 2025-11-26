@@ -14,6 +14,6 @@ namespace TaskApi.Repositories
         Task<bool> DeleteAsync(int id);
         Task AssignTaskAsync(int employeeId, int taskId);
         Task RemoveTaskAssignmentAsync(int employeeId, int taskId);
-
+        Task<List<Employee>> GetEmployeesWithOverdueTasksAsync();
     }
 }

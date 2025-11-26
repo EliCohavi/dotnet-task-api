@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using TaskApi.Models;
-using TaskApi.Services;
+using System.Linq;
 using System.Threading.Tasks;
 using TaskApi.Dtos;
-using System.Linq;
 using TaskApi.Dtos.Employee_Dtos;
+using TaskApi.Dtos.Task_Dtos;
+using TaskApi.Models;
+using TaskApi.Services;
 
 namespace TaskApi.Controllers
 {
@@ -155,6 +156,28 @@ namespace TaskApi.Controllers
         {
             await _taskService.DeleteTaskAsync(id);
             return NoContent();
+        }
+
+        [HttpGet("overdue-tasks")]
+        public async Task<IActionResult> GetOverdueTasks()
+        {
+            List<TaskItemDto> tasks = await _taskService.GetOverdueTasksAsync();
+            var dtoList = tasks.Select(t => new TaskItemDto
+            {
+                Id = t.Id,
+                Title = t.Title,
+                Description = t.Description,
+                Completed = t.Completed,
+                DueDate = t.DueDate,
+                Employees = t.Employees?.Select(t => new EmployeeSummaryDto
+                {
+                    Id = t.Id,
+                    Name = t.Name
+                }).ToList()
+            });
+
+            return Ok(dtoList);
+
         }
 
     }

@@ -133,5 +133,24 @@ namespace TaskApi.Controllers
             return NoContent();
         }
 
+        [HttpGet("employees-with-overdue-tasks")]
+        public async Task<IActionResult> GetEmployeesWithOverdueTasks()
+        {
+            List<EmployeeDto> employees = await _employeeService.GetEmployeesWithOverdueTasksAsync();
+            var dtoList = employees.Select(e => new EmployeeDto
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Tasks = e.Tasks?.Select(t => new TaskSummaryDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Completed = t.Completed,
+                    DueDate = t.DueDate
+                }).ToList()
+            });
+            return Ok(dtoList);
+
+        }
     }
 }

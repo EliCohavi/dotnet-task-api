@@ -97,7 +97,7 @@ namespace TaskApi.Services
             if (existing == null) throw new KeyNotFoundException("Employee not found");
             // Partial Field Updates
             if (dto.Name != null) existing.Name = dto.Name;
-            
+
             var updated = await _employeeRepository.UpdateAsync(existing); // Save changes to repository
 
             var updatedDto = new EmployeeDto // Maps back to DTO
@@ -146,5 +146,24 @@ namespace TaskApi.Services
             await _employeeRepository.RemoveTaskAssignmentAsync(employeeId, taskId);
         }
 
+        public async Task<List<EmployeeDto>> GetEmployeesWithOverdueTasksAsync()
+        {
+
+            List<Employee> entities = await _employeeRepository.GetEmployeesWithOverdueTasksAsync();
+
+            return entities.Select(e => new EmployeeDto
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Tasks = e.Tasks?.Select(t => new TaskSummaryDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Completed = t.Completed,
+                    DueDate = t.DueDate
+                }).ToList()
+            }).ToList();
+
+        }
     }
 }
