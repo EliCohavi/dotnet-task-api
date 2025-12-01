@@ -1728,6 +1728,16 @@
             "rid": "win"
           }
         }
+      },
+      "TaskApi.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/TaskApi.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskApi.Shared.dll": {}
+        }
       }
     }
   },
@@ -5007,6 +5017,11 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "TaskApi.Shared/1.0.0": {
+      "type": "project",
+      "path": "../TaskApi.Shared/TaskApi.Shared.csproj",
+      "msbuildProject": "../TaskApi.Shared/TaskApi.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -5016,7 +5031,8 @@
       "Microsoft.EntityFrameworkCore.InMemory >= 9.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 9.0.0",
-      "Swashbuckle.AspNetCore >= 9.0.1"
+      "Swashbuckle.AspNetCore >= 9.0.1",
+      "TaskApi.Shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5050,7 +5066,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi.Shared\\TaskApi.Shared.csproj": {
+              "projectPath": "C:\\Users\\Eli Cohavi\\source\\repos\\EliCohavi\\dotnet-task-api\\TaskApi.Shared\\TaskApi.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

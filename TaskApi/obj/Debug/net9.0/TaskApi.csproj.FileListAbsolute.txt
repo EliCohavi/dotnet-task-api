@@ -59,7 +59,6 @@ C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.AssemblyInfoInputs.cache
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.AssemblyInfo.cs
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.csproj.CoreCompileInputs.cache
-C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.sourcelink.json
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\rjimswa.dswa.cache.json
@@ -195,4 +194,6 @@ C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.Shared.dll
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.Shared.pdb
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

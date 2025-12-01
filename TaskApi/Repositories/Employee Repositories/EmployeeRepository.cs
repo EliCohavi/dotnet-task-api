@@ -106,9 +106,9 @@ namespace TaskApi.Repositories.Employee_Repositories
 
         public async Task<List<Employee>> GetEmployeesWithOverdueTasksAsync()
         {
-            int todayDate = int.Parse(DateTime.UtcNow.ToString("yyyyMMdd"));
+            DateTime now = DateTime.UtcNow;
             var employeesWithOverdueTasks = await _db.Employees
-                .Where(e => e.Tasks.Any(t => t.DueDate.HasValue && t.DueDate.Value < todayDate && !t.Completed))
+                .Where(e => e.Tasks.Any(t => t.DueDate.HasValue && t.DueDate < now && !t.Completed))
                 .Include(e => e.Tasks)
                 .ToListAsync();
             return employeesWithOverdueTasks;

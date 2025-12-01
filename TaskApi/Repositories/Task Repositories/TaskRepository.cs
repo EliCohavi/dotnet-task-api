@@ -3,6 +3,9 @@ using TaskApi.Data;
 using TaskApi.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using TaskApi.Dtos.Task_Dtos;
+using TaskApi.Dtos.Employee_Dtos;
 
 namespace TaskApi.Repositories
 {
@@ -103,9 +106,10 @@ namespace TaskApi.Repositories
 
         public async Task<List<TaskItem>> GetOverdueTasksAsync()
         {
-            int todayInt = int.Parse(DateTime.UtcNow.ToString("yyyyMMdd"));
+            var now = DateTime.UtcNow;
+            // If you want date-only comparison: use now.Date and compare against t.DueDate.Value.Date
             var overdueTasks = await _db.TaskItems
-                .Where(t => t.DueDate.HasValue && t.DueDate < todayInt && !t.Completed)
+                .Where(t => t.DueDate.HasValue && t.DueDate.Value < now && !t.Completed)
                 .Include(t => t.Employees)
                 .ToListAsync();
             return overdueTasks;

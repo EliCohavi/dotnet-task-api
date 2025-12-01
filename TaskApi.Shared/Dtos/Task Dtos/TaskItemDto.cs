@@ -8,7 +8,7 @@ namespace TaskApi.Dtos
         public string? Title { get; set; }
         public string? Description { get; set; }
         public bool Completed { get; set; }
-        public int? DueDate { get; set; }
+        public DateTime? DueDate { get; set; }   // changed to DateTime?
         public List<EmployeeSummaryDto>? Employees { get; set; }
     }
 }

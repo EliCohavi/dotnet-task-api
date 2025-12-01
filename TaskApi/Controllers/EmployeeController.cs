@@ -19,21 +19,11 @@ namespace TaskApi.Controllers
         {
             _employeeService = employeeService;
         }
-        [HttpGet("api/employees")]
+        [HttpGet]
         public async Task<IActionResult> GetAllEmployees()
         {
             var employees = await _employeeService.GetAllEmployeesAsync();
-            var dtoList = employees.Select(e => new EmployeeDto
-            {
-                Id = e.Id,
-                Name = e.Name,
-                Tasks = e.Tasks?.Select(t => new TaskSummaryDto
-                {
-                    Id = t.Id,
-                    Title = t.Title
-                }).ToList()
-            });
-            return Ok(dtoList);
+            return Ok(employees.ToList());
         }
 
         [HttpGet("{id:int}")]
@@ -57,15 +47,8 @@ namespace TaskApi.Controllers
         [HttpPost]
         public async Task<IActionResult> EmployeeCreate(EmployeeCreateDto dto) // Takes Dto, Maps to Model
         {
-            var createdEmployeeDto = await _employeeService.CreateEmployeeAsync(dto); // Create task by calling service. Returns created TaskItem model.
-
-            var responseDto = new EmployeeDto // Maps dto to response dto with id.
-            {
-                Id = createdEmployeeDto.Id,
-                Name = createdEmployeeDto.Name,
-            };
-
-            return CreatedAtAction(nameof(GetEmployeeById), new { id = createdEmployeeDto.Id }, responseDto);
+            EmployeeDto createdEmployeeDto = await _employeeService.CreateEmployeeAsync(dto); // Create task by calling service. Returns Dto
+            return CreatedAtAction(nameof(GetEmployeeById), new { id = createdEmployeeDto.Id }, createdEmployeeDto);
         }
 
         //POST /employees/{employeeId}/tasks/{taskId}

@@ -7,7 +7,7 @@ namespace TaskApi.Models
         public string? Title { get; set; }
         public string? Description { get; set; }
         public bool Completed { get; set; }
-        public int? DueDate { get; set; }
+        public DateTime? DueDate { get; set; }   // changed from int? to DateTime?
         public ICollection<Employee>? Employees { get; set; } = new List<Employee>();
     }
 }
