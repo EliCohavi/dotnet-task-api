@@ -196,3 +196,5 @@ C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.Shared.dll
 C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\bin\Debug\net9.0\TaskApi.Shared.pdb
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\TaskApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Eli Cohavi\source\repos\EliCohavi\dotnet-task-api\TaskApi\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
