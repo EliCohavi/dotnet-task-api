@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0" />
+	<PackageReference Include="TaskApi.Shared" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

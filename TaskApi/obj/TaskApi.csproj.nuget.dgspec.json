@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Eli Cohavi\\Documents\\Local NuGet Package": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -91,6 +92,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Eli Cohavi\\Documents\\Local NuGet Package": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -142,6 +144,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[9.0.1, )"
+            },
+            "TaskApi.Shared": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
