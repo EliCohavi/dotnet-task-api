@@ -1,25 +1,25 @@
-﻿@page "/employees"
+﻿@page "/employeeid"
 @using TaskApi.Dtos.Employee_Dtos
 @rendermode InteractiveServer
 @inject EmployeeApiClient EmployeesClient
 
-<h3>Employees</h3>
+<h3>Get Employee By ID</h3>
 
-@if (employees == null)
+
+@if (employeeById == null)
 {
     <p>Loading...</p>
 }
 else
 {
-    @foreach (var employee in employees)
-    {
+    
         <div>
-            <p>@employee.Name (@employee.Id)</p>
+            <p>@employeeById.Name (@employeeById.Id)</p>
 
             <ul>
-                @if (employee.Tasks != null && employee.Tasks.Any())
+                @if (employeeById.Tasks != null && employeeById.Tasks.Any())
                 {
-                    @foreach (var task in employee.Tasks)
+                    @foreach (var task in employeeById.Tasks)
                     {
                         <li>@task.Title</li>
                     }
@@ -29,19 +29,19 @@ else
                     <li><em>No tasks assigned</em></li>
                 }
             </ul>
-            
+
         </div>
-    }
+    
 
 
 
 }
 
 @code {
-    IEnumerable<EmployeeDto> employees;
+    EmployeeDto employeeById;
 
     protected override async Task OnInitializedAsync()
     {
-        employees = await EmployeesClient.GetAllEmployeesAsync();
+        employeeById = await EmployeesClient.GetEmployeeByIdAsync(2);
     }
 }

@@ -1,0 +1,23 @@
+﻿@page "/test-button"
+@rendermode InteractiveServer
+@inject EmployeeApiClient EmployeesClient
+
+<h3>Test Button</h3>
+
+ <button class="btn btn-primary" @onclick="CallApi">Call API</button>
+
+ <p>@result</p>
+ 
+
+ @code {
+    string result;
+
+    async Task CallApi()
+    {
+        var employee = await EmployeesClient.GetEmployeeByIdAsync(1);
+        result = $"Got employee: {employee.Name} ({employee.Id})";
+      
+        StateHasChanged();
+    }
+}
+

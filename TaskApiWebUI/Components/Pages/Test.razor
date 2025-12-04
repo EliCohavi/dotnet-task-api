@@ -1,0 +1,24 @@
+﻿@page "/test"
+@using System.Diagnostics
+@rendermode InteractiveServer
+
+<h3>Test</h3>
+
+<button class="btn btn-primary" @onclick="Tested">Test Browser Console</button>
+
+<p>@result</p>
+
+
+@code {
+    string result;
+
+    async Task Tested()
+    {
+        result = "Button Clicked!";
+        Console.WriteLine("Button was clicked!");
+        Debug.WriteLine("Button clicked (debug)");      // VS Debug window
+
+
+        StateHasChanged();
+    }
+}
