@@ -14,7 +14,6 @@ public class EmployeeApiClient
     public EmployeeApiClient(HttpClient http)
     {
         _http = http;
-        _http.BaseAddress = new Uri("https://localhost:7136/api/employees/");
     }
 
     // GET: api/employees

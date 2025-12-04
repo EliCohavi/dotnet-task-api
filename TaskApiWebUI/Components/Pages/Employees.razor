@@ -1,0 +1,46 @@
+﻿@page "/employees"
+@using TaskApi.Dtos.Employee_Dtos
+@inject EmployeeApiClient EmployeesClient
+
+<h3>Employees</h3>
+
+@if (employees == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    @foreach (var employee in employees)
+    {
+        <div>
+            <p>@employee.Name (@employee.Id)</p>
+
+            <ul>
+                @if (employee.Tasks != null && employee.Tasks.Any())
+                {
+                    @foreach (var task in employee.Tasks)
+                    {
+                        <li>@task.Title</li>
+                    }
+                }
+                else
+                {
+                    <li><em>No tasks assigned</em></li>
+                }
+            </ul>
+            
+        </div>
+    }
+
+
+
+}
+
+@code {
+    IEnumerable<EmployeeDto> employees;
+
+    protected override async Task OnInitializedAsync()
+    {
+        employees = await EmployeesClient.GetAllEmployeesAsync();
+    }
+}
