@@ -1,0 +1,42 @@
+﻿@page "/create-employee"
+@rendermode InteractiveServer
+@using TaskApi.Dtos.Employee_Dtos
+@inject EmployeeApiClient EmployeesClient
+
+
+<h3>Create New Employee</h3>
+
+<div style="height: 80px;" class="form-group">
+    <label>Name:</label>
+    <input @bind="newEmployeeName" class="form-control" />
+</div>
+
+<button class="btn btn-primary" @onclick="CreateSingleEmployee">Create Employee</button>
+
+@if (createdEmployee != null)
+{
+    <p class="mt-3 text-success">
+        Created employee: <strong>@createdEmployee.Name</strong> (ID: @createdEmployee.Id)
+    </p>
+}
+
+@code {
+    string newEmployeeName;
+    EmployeeDto? createdEmployee;
+
+    async Task CreateSingleEmployee()
+    {
+        if (string.IsNullOrWhiteSpace(newEmployeeName))
+            return;
+
+        var dto = new EmployeeCreateDto
+        {
+            Name = newEmployeeName
+        };
+
+        createdEmployee = await EmployeesClient.CreateEmployeeAsync(dto);
+
+        // Optional: clear the input after creation
+        newEmployeeName = string.Empty;
+    }
+}
