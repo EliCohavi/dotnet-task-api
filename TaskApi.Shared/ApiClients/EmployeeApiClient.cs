@@ -2,9 +2,7 @@
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TaskApi.Dtos;
 using TaskApi.Dtos.Employee_Dtos;
-using TaskApi.Dtos.Task_Dtos;
 using System;
 
 public class EmployeeApiClient
@@ -36,20 +34,6 @@ public class EmployeeApiClient
         return await response.Content.ReadFromJsonAsync<EmployeeDto>();
     }
 
-    // POST: api/employees/{employeeId}/tasks/{taskId}
-    public async Task AssignTaskAsync(int employeeId, int taskId)
-    {
-        var response = await _http.PostAsync($"{employeeId}/tasks/{taskId}", null);
-        response.EnsureSuccessStatusCode();
-    }
-
-    // DELETE: api/employees/{employeeId}/tasks/{taskId}
-    public async Task RemoveTaskAsync(int employeeId, int taskId)
-    {
-        var response = await _http.DeleteAsync($"{employeeId}/tasks/{taskId}");
-        response.EnsureSuccessStatusCode();
-    }
-
     // PUT: api/employees/{id}
     public async Task UpdateEmployeeAsync(int id, EmployeeUpdateDto dto)
     {
@@ -68,6 +52,20 @@ public class EmployeeApiClient
     public async Task DeleteEmployeeAsync(int id)
     {
         var response = await _http.DeleteAsync($"{id}");
+        response.EnsureSuccessStatusCode();
+    }
+
+    // POST: api/employees/{employeeId}/tasks/{taskId}
+    public async Task AssignTaskAsync(int employeeId, int taskId)
+    {
+        var response = await _http.PostAsync($"{employeeId}/tasks/{taskId}", null);
+        response.EnsureSuccessStatusCode();
+    }
+
+    // DELETE: api/employees/{employeeId}/tasks/{taskId}
+    public async Task RemoveTaskAsync(int employeeId, int taskId)
+    {
+        var response = await _http.DeleteAsync($"{employeeId}/tasks/{taskId}");
         response.EnsureSuccessStatusCode();
     }
 

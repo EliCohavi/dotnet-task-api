@@ -5,10 +5,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// Http Clients
 builder.Services.AddHttpClient<EmployeeApiClient>(client =>
 {
-    client.BaseAddress = new Uri("http://localhost:7102/");
+    client.BaseAddress = new Uri("https://localhost:7136/api/employees/");
 });
+builder.Services.AddHttpClient<TaskApiClient>(client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7136/api/tasks/");
+});
+// Detailed Errors
+builder.Services.AddServerSideBlazor()
+    .AddCircuitOptions(options => { options.DetailedErrors = true; });
+
 
 var app = builder.Build();
 
